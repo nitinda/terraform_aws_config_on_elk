@@ -1,5 +1,10 @@
-resource "aws_iam_role" "demo_iam_role_es" {
-  name = "terraform-demo-iam-role-es"
+resource "aws_iam_role" "demo_iam_role_elasticsearch" {
+  name = "terraform-demo-iam-role-elasticsearch"
+  path = "/service-role/"
+
+  tags = "${merge(var.common_tags, map(
+    "Description", "IAM Role for Elasticsearch Domains",
+  ))}"
 
   assume_role_policy = <<EOF
 {
@@ -15,16 +20,18 @@ resource "aws_iam_role" "demo_iam_role_es" {
   ]
 }
 EOF
+
 }
 
-resource "aws_iam_role_policy" "demo_iam_role_policy_es" {
-  name = "terraform-demo-iam-role-policy-es"
-  role = "${aws_iam_role.demo_iam_role_es.id}"
+resource "aws_iam_role_policy" "demo_iam_role_policy_elasticsearch" {
+  name = "terraform-demo-iam-role-policy-elasticsearch"
+  role = "${aws_iam_role.demo_iam_role_elasticsearch.id}"
 
   policy = <<EOF
 {
   "Version": "2012-10-17",
-  "Statement": [{
+  "Statement": [
+    {
       "Effect": "Allow",
       "Action": [
         "ec2:DescribeVpcs",
@@ -46,7 +53,7 @@ resource "aws_iam_role_policy" "demo_iam_role_policy_es" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "demo_iam_role_policy_es_attachment_escognitoaccess" {
-  role       = "${aws_iam_role.demo_iam_role_es.name}"
+resource "aws_iam_role_policy_attachment" "demo_iam_role_policy_elasticsearch_attachment_AmazonESCognitoAccess" {
+  role       = "${aws_iam_role.demo_iam_role_elasticsearch.name}"
   policy_arn = "arn:aws:iam::aws:policy/AmazonESCognitoAccess"
 }

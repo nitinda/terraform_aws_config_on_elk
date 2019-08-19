@@ -1,6 +1,6 @@
-variable "cognito_user_pool_id" {
-  description = "description"
-}
+# variable "cognito_user_pool_id" {
+#   description = "description"
+# }
 
 variable "es_endpoint" {
   description = "description"

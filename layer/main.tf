@@ -11,14 +11,14 @@ module "aws_resources_module_network" {
   common_tags = "${var.common_tags}"
 }
 
-module "aws_resources_module_cognito" {
-  source  = "../module_cognito"
+# module "aws_resources_module_cognito" {
+#   source  = "../module_cognito"
 
-  providers = {
-    "aws"  = "aws.shared_services"
-  }
-  common_tags = "${var.common_tags}"
-}
+#   providers = {
+#     "aws"  = "aws.shared_services"
+#   }
+#   common_tags = "${var.common_tags}"
+# }
 
 module "aws_resources_module_es" {
   source  = "../module_es"
@@ -30,11 +30,11 @@ module "aws_resources_module_es" {
   common_tags = "${var.common_tags}"
   es_subnet_ids = "${module.aws_resources_module_network.demo_subnet_public}"
   security_group_ids = "${module.aws_resources_module_network.demo_security_group}"
-  cognito_user_pool_id = "${module.aws_resources_module_cognito.cognito_user_pool_id}"
-  cognito_user_pool_endpoint = "${module.aws_resources_module_cognito.cognito_user_pool_endpoint}"
-  cognito_identity_pool_id = "${module.aws_resources_module_cognito.cognito_identity_pool_id}"
-  cognito_iam_role_arn = "${module.aws_resources_module_cognito.cognito_iam_role_arn}"
-  depends_on = ["${module.aws_resources_module_cognito.cognito_identity_pool_roles_attachment_id}"]
+  # cognito_user_pool_id = "${module.aws_resources_module_cognito.cognito_user_pool_id}"
+  # cognito_user_pool_endpoint = "${module.aws_resources_module_cognito.cognito_user_pool_endpoint}"
+  # cognito_identity_pool_id = "${module.aws_resources_module_cognito.cognito_identity_pool_id}"
+  # cognito_iam_role_arn = "${module.aws_resources_module_cognito.cognito_iam_role_arn}"
+  # depends_on = ["${module.aws_resources_module_cognito.cognito_identity_pool_roles_attachment_id}"]
 }
 
 module "aws_resources_module_lambda_layer" {
@@ -53,7 +53,7 @@ module "aws_resources_module_lambda" {
   }
   
   common_tags = "${var.common_tags}"
-  cognito_user_pool_id = "${module.aws_resources_module_cognito.cognito_user_pool_id}"
+  # cognito_user_pool_id = "${module.aws_resources_module_cognito.cognito_user_pool_id}"
   es_endpoint = "${module.aws_resources_module_es.es_endpoint}"
   lambda_layer_python_arn = "${module.aws_resources_module_lambda_layer.demo_lambda_layer_python3_version_arn}"
   

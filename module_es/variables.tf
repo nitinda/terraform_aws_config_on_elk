@@ -7,21 +7,21 @@ variable "security_group_ids" {
   description = "description"
 }
 
-variable "cognito_user_pool_id" {
-  description = "description"
-}
+# variable "cognito_user_pool_id" {
+#   description = "description"
+# }
 
-variable "cognito_identity_pool_id" {
-  description = "description"
-}
+# variable "cognito_identity_pool_id" {
+#   description = "description"
+# }
 
-variable "cognito_user_pool_endpoint" {
-  description = "description"
-}
+# variable "cognito_user_pool_endpoint" {
+#   description = "description"
+# }
 
-variable "cognito_iam_role_arn" {
-  description = "description"
-}
+# variable "cognito_iam_role_arn" {
+#   description = "description"
+# }
 
 variable depends_on { default = [], type = "list"}
 

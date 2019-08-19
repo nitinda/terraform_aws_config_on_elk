@@ -1,4 +1,8 @@
-data "aws_caller_identity" "demo_current" {}
 
-data "aws_region" "demo_current" {}
+data "http" "demo_workstation_external_ip" {
+  url = "http://icanhazip.com"
+}
 
+locals {
+  workstation_external_cidr = "${chomp(data.http.demo_workstation_external_ip.body)}/32"
+}
