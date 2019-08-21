@@ -43,6 +43,8 @@ module "aws_resources_module_lambda_layer" {
   providers = {
     "aws"  = "aws.shared_services"
   }
+
+  pip_binary_locaton = "/usr/local/bin/pip3.7"
 }
 
 module "aws_resources_module_lambda" {

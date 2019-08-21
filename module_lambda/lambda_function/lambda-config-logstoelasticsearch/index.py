@@ -21,6 +21,8 @@ DOWNLOADED_SNAPSHOT_FILE_NAME = "/tmp/configsnapshot" + \
 
 ignore_resources = ["AWS::Config::ResourceCompliance", "AWS::IAM::Policy", "AWS::SSM::AssociationCompliance", "AWS::SSM::ManagedInstanceInventory"]
 
+include_resource_type = ["AWS::Config::ResourceCompliance"]
+
 def getObject(bucket_name, object_name):
 
     # Retrieve the object
@@ -64,7 +66,7 @@ def loadIntoES(jsonPayLoadFile):
                 #indexName = indexNamePreFix + datetime.now().strftime("%Y-%m-%d")
                 # create an index in elasticsearch, ignore status code 400 (index already exists)
                 #res = es.index(index=indexName, doc_type='record', id=record["relationships"]["resourceType"], body=recordJson)
-                if record["resourceType"] not in ignore_resources:
+                if record["resourceType"] in include_resource_type:
                     res = es.index(index=indexname.lower(), doc_type=typename, body=recordJson)
         except ClientError as e:
             logging.error(e)
