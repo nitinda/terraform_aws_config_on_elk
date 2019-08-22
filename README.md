@@ -1,4 +1,4 @@
-#AWS Config Compliance information in Dashoard using AWS Elastic Search and Kibana (Work in progress)
+# AWS Config Compliance information in Dashoard using AWS Elastic Search and Kibana (Work in progress)
 
 Visualize AWS Config Compliance information in Dashoard using AWS Elastic Search and Kibana.
 
