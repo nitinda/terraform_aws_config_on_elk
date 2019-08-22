@@ -11,7 +11,7 @@ resource "null_resource" "demo_null_resource_clean_up_workspace" {
 
 resource "null_resource" "demo_null_resource_pip_download_modules" {
   provisioner "local-exec" {
-    command = "cd ${path.module}/python_layers_payload/ && ${var.pip_binary_locaton} install --upgrade requests elasticsearch -t ./python"
+    command = "cd ${path.module}/python_layers_payload/ && ${var.pip_binary_locaton} install --upgrade requests elasticsearch requests_aws4auth -t ./python"
   }
   depends_on = ["null_resource.demo_null_resource_clean_up_workspace"]
 
